@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>购物车</title>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<style type="text/css">
+			h1{font-size:1.2rem;text-align:center;}
+			body{font:normal 0.7rem/1.5 Tahoma,"Lucida Grande",Verdana,"Microsoft Yahei",STXihei,hei}
+			.mod_thead{
+				display: flex;height:2rem;
+				background:#555;color:#fff;text-align:center;
+				align-items: center;padding:0 0.5rem;
+			}
+			.mod_thead span{display:block;flex:1;}
+			.mod_thead span:first-child{flex-basis:4rem;text-align:left;}
+			.mod_datalist li{padding:1rem 0.5rem;display:flex;align-items:center;text-align:center;border-bottom:solid 0.05rem #ccc;}
+			.mod_datalist li>div{flex:1;}
+			.mod_datalist li>div.mod_datalist_info{flex-basis:4rem;display:flex;text-align:left;align-items:center;}
+			.mod_datalist li>div.mod_datalist_info>div{flex:1;padding-left:0.25rem;}
+			.mod_datalist li>div.mod_datalist_info>div>.give>span{color:#888;}
+			.mod_datalist li>div.mod_datalist_info>div>.give>span:first-child{color:#333;}
+			.mod_datalist .pro{width:2.5rem;height:2.5rem;}
+			.mod_datalist .amount{display:flex;}
+			.mod_datalist .amount>a{display:block;width:1rem;height:1.4rem;line-height:1.4rem;text-align:center;}
+			.mod_datalist .amount>div{flex:1;}
+			.mod_datalist .amount>div input{width:100%;height:1.4rem;border:solid 0.05rem #ccc;padding:0.25rem;box-sizing:border-box;font-size:0.7rem;}
+			.mod_datalist .amount>div span{color:#555;}
+			.settle_accounts{display:flex;justify-content:space-between;padding:1rem 0.5rem;}
+			.settle_accounts>div{display:flex;align-items:center;}
+			.settle_accounts>div>.btn{display:block;width:5rem;height:2rem;line-height:2rem;text-align:center;background:#f00;color:#fff;}
+			.settle_accounts>div:first-child>a{margin-right:0.5rem;}
+			.settle_accounts>div:last-child>span{margin-right:0.25rem;}
+			.redio{display:block;width:1rem;height:1rem;margin-right:0.25rem; border-radius:50%;border:solid 1px #ccc;box-sizing:border-box;}
+		</style>
+	</head>
+	<body>
+		<article class="container">
+			<h1>购物车</h1>
+			<section class="mod_thead">
+				<span>商品信息</span>
+				<span>商品金额</span>
+				<span>商品数量</span>
+				<span>总金额</span>
+				<span>编辑</span>
+			</section>
+			<ul class="mod_datalist">
+				<li v-for="(item,index) in productList">
+					<div class="mod_datalist_info">
+						<span class="redio"></span>
+						<img v-bind:src="item.productImage" alt="1" class="pro">
+						<div class="">
+							<p class="name">{{item.productName}}</p>
+							<div class="give">
+								<span>赠送：</span>
+								<span v-for="part in item.parts" v-text="part.partsName">打火机</span>
+							</div>
+						</div>
+					</div>
+					<div>{{item.productPrice}}</div>
+					<div class="amount">
+						<a>-</a>
+						<div>
+							<input type="text" value="" v-model="item.productQuentity">
+							<span class="dn">有货</span>
+						</div>
+						<a>+</a>
+					</div>
+					<div class="total">0.00</div>
+					<div class="del">删除</div>			
+				</li>
+			</ul>
+			<div class="settle_accounts">
+				<div id="">
+					<span class="redio"></span>
+					<a>全选</a>
+					<a>取消全选</a>
+				</div>
+				<div>
+					<span>总价:300.00元</span>
+					<a class="btn">结账</a>
+				</div>
+			</div>
+		</article>
+		<script src="js/vue.js"></script>
+		<!--<script src="js/vue-resource.min.js"></script>-->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" ></script>
+		<script  src="js/cart.js" ></script>		
+	</body>
+</html>

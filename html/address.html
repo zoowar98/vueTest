@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>配送地址</title>
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" ></script>
+	</head>
+	<body>
+		<article class="address">
+			<ul class="list">
+				<li v-for="(item,index) in addressList">
+					<div class="name">{{item.name}}</div>
+					<div class="address">{{item.address}}</div>
+					<div class="tel">{{item.tel}}</div>
+					<div class="istrue" v-if="!ischeck">默认地址</div>
+				</li>
+			</ul>
+		</article>
+		
+		<script type="text/javascript">
+			new Vue({
+				el:".address",
+				data:{
+					addressList:[],
+					ischeck:false
+				},
+				mounted:function(){
+					this.$nextTick(
+						function(){
+							this.address();
+						}
+					);
+				},
+				methods:{
+					address:function(){
+						var _this=this;
+						this.$http.get("../data/address.json").then(function(res){
+							console.log(res);
+							_this.addressList=res.data.result;
+						})
+					}
+				}
+			});
+			Vue.prototype.$http=axios
+		</script>
+	</body>
+</html>

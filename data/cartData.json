@@ -1,0 +1,77 @@
+{
+	"status":1,
+	"result":{
+		"totalMoney":59,
+		"list":[
+			{
+				"productId":"20201094",
+				"productName":"黄鹤楼",
+				"productPrice":19,
+				"productQuentity":1,
+				"productImage":"img/1.jpg",
+				"parts":[
+					{
+						"partsId":"10001",
+						"partsName":"打火机"
+					},
+					{
+						"partsId":"102001",
+						"partsName":"剪刀"
+					}
+				]
+				
+			},
+			{
+				"productId":"20201094",
+				"productName":"美汁源",
+				"productPrice":2,
+				"productQuentity":1,
+				"productImage":"img/2.jpg",
+				"parts":[
+					{
+						"partsId":"12001",
+						"partsName":"百事可乐"
+					}
+				]
+				
+			},
+			{
+				"productId":"25201044",
+				"productName":"王老吉",
+				"productPrice":21,
+				"productQuentity":1,
+				"productImage":"img/3.jpg",
+				"parts":[
+					{
+						"partsId":"11001",
+						"partsName":"头盔"
+					}
+				]
+				
+			},
+			{
+				"productId":"25201044",
+				"productName":"加多宝",
+				"productPrice":12,
+				"productQuentity":4,
+				"productImage":"img/4.jpg",
+				"parts":[
+					{
+						"partsId":"12002",
+						"partsName":"保温杯"
+					},
+					{
+						"partsId":"12002",
+						"partsName":"太阳眼镜"
+					}
+				]
+				
+			}
+		]
+		
+	},
+	"message":{
+		
+	}
+	
+}

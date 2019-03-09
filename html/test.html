@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<style type="text/css" scoped="scoped">
+			body{font-size:0.8rem;font-family:"微软雅黑";}
+			#mod_list{background:#fff;box-sizing:border-box;}
+			button{width:5rem;padding:.4rem 0;margin-top:.5rem;border-radius:0.15rem;
+			background:#f00;color:#fff;font-size:0.9rem;border:none 0;
+			box-sizing:border-box;}
+			img{width:5.5rem;height:5.5rem;border-radius:50%;margin-right:0.75rem;margin-left:.5rem;}
+			#mod_list li{border-bottom:solid 0.05rem #ccc;padding:1rem .5rem .5rem;list-style-type:none;align-items: center;}
+			:focus{outline:0;}
+			p,ul,figure,body{margin:0;padding:0;}
+			.figure{display:flex;margin:0 0 1rem;align-items:center;}
+			.figure-info{flex:1;}
+			.figure-check{display:block;width:1rem;height:1rem;border-radius: 50%;border:solid 1px #ccc;}
+			.tool{display:flex;padding:.5rem;align-items: center;}
+			.tool .figure-check{margin-right:.5rem;}
+			.tool .all{margin-right:2rem;}
+			.active{background:#e5e5e5;}
+			.activeTxt{color:#f00;}
+			.tool-btn{width:100px;display:flex;align-items:center;flex-flow:column;}
+			.mod-dialog{position:absolute;left:0;top:0;width:100%;height:100%;border:none;padding:0;
+			background:rgba(0,0,0,.8);display:flex;align-items:center;justify-content:center;margin:0;}
+			.mod-dialog-cont{width:15rem;padding:1.5rem;background:#fff;box-sizing:border-box;text-align:center;}
+			.mod-dialog-cont p{margin-bottom:1rem}
+		</style>
+	</head>
+	<body>
+		<div id="mod_list">		
+			<ul>
+				<li v-for="(item,index) in list" :class ="{active:index==current}" :id="'i_'+index"  @click="cbg(index)">					
+					<figure class="figure">
+						<a  class="figure-check"></a>
+						<img v-bind:src="item.src" v-bind:alt="index" />
+						<div class="figure-info">
+							<p>编号：<strong>{{item.id}}</strong></p>
+							<p>歌曲名:{{item.title}}</p>							
+						</div>
+						<div class="tool-btn">
+							<button class="play">点播</button>
+							<button class="del" @click="delList">删除</button>
+						</div>
+
+						
+					</figure>
+				</li>
+			</ul>
+			<div class="tool" v-show="list.length!=0">
+				<a class="figure-check"></a>
+				<span class="all" v-bind:class="{activeTxt:isclick==1}" @click="isclick=1">全选</span>
+				<span v-bind:class="{activeTxt:isclick==2}" @click="isclick=2">取消全选</span>
+			</div>
+			<dialog class="mod-dialog" v-show="hide">
+				<div class="mod-dialog-cont">
+					<p>是否要删除选中项</p>
+					<div class="btnbox">
+						<button @click="confirm">确定</button>
+						<button @click="cancel">取消</button>
+					</div>
+				</div>
+			</dialog>
+		</div>
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+	
+			 var vm=new Vue({
+			 	el:"#mod_list",
+			 	data:{
+			 		txt:"",
+			 		current:-1,
+			 		list:[
+				 		{id:1,title:"慢慢来会比较快",src:"../img/1.jpg"},
+				 		{id:2,title:"宁静的夏天",src:"../img/2.jpg"},
+				 		{id:3,title:"永夜",src:"../img/3.jpg"}
+			 		],
+			 		isclick:false,
+			 		hide:false
+			 	},
+			 	methods:{
+			 		cbg:function(index){
+			 			this.current=index;
+			 		},
+			 		delList:function(index){			 					 				
+			 				
+			 			this.hide=true;
+			 		},
+			 		confirm:function(index){
+			 			this.list.splice(index,1);
+			 			this.hide=false;
+			 		},
+			 		cancel:function(){
+			 			this.hide=false;
+			 		}
+			 	}
+			 	
+			 })
+		</script>
+
+	</body>
+</html>
