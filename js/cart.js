@@ -17,7 +17,7 @@ new Vue({
 		cartView:function(){		
 			console.log(222);
 			var _this=this;
-			this.$http.get("data/cartData.json",{"id":123}).then(function(res){	
+			axios.get("data/cartData.json",{"id":123}).then(function(res){	
 				console.log(res);
 			   _this.productList=res.data.result.list;
 			});
@@ -25,4 +25,3 @@ new Vue({
 	}
 	
 });
-Vue.prototype.$http=axios
